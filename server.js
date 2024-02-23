@@ -6,9 +6,9 @@ const app = express()
 const port = 4000
 import dotenv from 'dotenv'
 import { createOnlinePayment } from './src/modules/order/order.controller.js'
-import { asyncHandler } from './src/utils/asyncHandler.js'
 
-app.post('/webhook', express.raw({type: 'application/json'}),asyncHandler(createOnlinePayment));
+
+app.post('/webhook', express.raw({type: 'application/json'}),createOnlinePayment);
 
 
 

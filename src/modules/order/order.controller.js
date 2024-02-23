@@ -37,7 +37,7 @@ const createCashOrder = async (req,res,next)=>{
 
         )
     })
-    productModel.bulkWrite(options);
+   await productModel.bulkWrite(options);
 
     // clear user cart
 
@@ -171,7 +171,7 @@ async function card(e,res){
 
         )
     })
-    productModel.bulkWrite(options);
+   await productModel.bulkWrite(options);
 
     // clear user cart
 
