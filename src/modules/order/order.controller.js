@@ -123,7 +123,7 @@ const createOnlinePayment = async (request, response) => {
     }else{
         console.log(`Unhandled event type ${event.type}`);
     }
-   
+    response.send()
   }
 
 
