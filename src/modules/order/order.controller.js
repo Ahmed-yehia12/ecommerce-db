@@ -102,6 +102,9 @@ const createCheckOutSession = async(req,res,next)=>{
 
 }
 
+
+
+
 const createOnlinePayment = async (request, response) => {
     const sig = request.headers['stripe-signature'].toString();
   
@@ -115,15 +118,16 @@ const createOnlinePayment = async (request, response) => {
     }
   
     // Handle the event
-    if(event.type =='checkout.session.completed'){
-      await  card(event.data.object,response)
+    if(event.type == "checkout.session.completed"){
+        const chekOutSessionComp = event.data.object
+    //   await  card(event.data.object,response)
         console.log("create order here...");
 
 
     }else{
         console.log(`Unhandled event type ${event.type}`);
     }
-    response.send()
+  
   }
 
 

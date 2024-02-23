@@ -15,7 +15,7 @@ dotenv.config()
 await dbConnection()
 
 app.use(cors());
-app.post('/webhook', express.raw({type: 'application/json'}),createOnlinePayment);
+app.post('/webhook' , express.raw({type: 'application/json'}) , createOnlinePayment );
 app.use(express.json());
 bootstrap(app)
 app.use("/uploads",express.static("uploads"))
