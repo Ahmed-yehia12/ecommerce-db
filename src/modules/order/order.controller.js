@@ -4,7 +4,7 @@ import { cartModel } from '../../../database/models/cart.model.js';
 import { orderModel } from '../../../database/models/order.model.js';
 import { productModel } from './../../../database/models/product.model.js';
 import Stripe from 'stripe';
-import { userModel } from './../../../database/models/user.model';
+import { userModel } from './../../../database/models/user.model.js';
 const stripe = new Stripe('sk_test_51OmShNHRFfpX6hm3cVr3Keb28EWnW4r5GL2MmPSAcIsnMZvQ7mctEIoufEZH7Y0Q1bOQWrod7PyOYXY2mA6mNnPh001fX8FWG4');
 
 const createCashOrder = async (req,res,next)=>{
