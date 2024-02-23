@@ -102,7 +102,7 @@ const createCheckOutSession = async(req,res,next)=>{
 
 }
 
-const createOnlinePayment =  (request, response) => {
+const createOnlinePayment = async (request, response) => {
     const sig = request.headers['stripe-signature'].toString();
   
     let event;
@@ -116,7 +116,7 @@ const createOnlinePayment =  (request, response) => {
   
     // Handle the event
     if(event.type =='checkout.session.completed'){
-        card(event.data.object,response)
+      await  card(event.data.object,response)
         console.log("create order here...");
 
 
