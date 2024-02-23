@@ -120,8 +120,8 @@ const createOnlinePayment = async (request, response) => {
     // Handle the event
     if(event.type == "checkout.session.completed"){
         const chekOutSessionComp = event.data.object
-    //   await  card(event.data.object,response)
-        console.log("create order here...");
+      await  card(chekOutSessionComp,response)
+        console.log("create order here...",chekOutSessionComp);
 
 
     }else{
@@ -138,14 +138,18 @@ export {
     getAllOrder,
     createCheckOutSession,
     createOnlinePayment
-}
+}  
+
+
+
+
 
 async function card(e,res){
 
     
     // get cart 
     const cart = await cartModel.findById(e.client_reference_id);
-    if(!cart) return next(new Error('cart not found',{cause:404}));
+    // if(!cart) return next(new Error('cart not found',{cause:404}));
 
     let user = await userModel.findOne({email:e.customer_email});
 
