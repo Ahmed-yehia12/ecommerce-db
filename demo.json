@@ -1,0 +1,124 @@
+{
+    "success": false,
+    "message": "Cannot read properties of undefined (reading 'catch')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'catch')\n    at file:///opt/render/project/src/src/utils/asyncHandler.js:6:35\n    at Layer.handle [as handle_request] (/opt/render/project/src/node_modules/express/lib/router/layer.js:95:5)\n    at next (/opt/render/project/src/node_modules/express/lib/router/route.js:144:13)\n    at /opt/render/project/src/node_modules/body-parser/lib/read.js:137:5\n    at AsyncResource.runInAsyncScope (node:async_hooks:203:9)\n    at invokeCallback (/opt/render/project/src/node_modules/raw-body/index.js:231:16)\n    at done (/opt/render/project/src/node_modules/raw-body/index.js:220:7)\n    at IncomingMessage.onEnd (/opt/render/project/src/node_modules/raw-body/index.js:280:7)\n    at IncomingMessage.emit (node:events:514:28)\n    at endReadableNT (node:internal/streams/readable:1359:12)"
+  }
+  Request
+  {
+    "id": "evt_1OmuMgHRFfpX6hm3gWVnNDHw",
+    "object": "event",
+    "api_version": "2023-10-16",
+    "created": 1708677857,
+    "data": {
+      "object": {
+        "id": "cs_test_a1tJiYvg3iU9mwwQeV489ZpqpJeKMfOPArF2xq5yPnBGDAcTJYIEaPYFNa",
+        "object": "checkout.session",
+        "after_expiration": null,
+        "allow_promotion_codes": null,
+        "amount_subtotal": 150000,
+        "amount_total": 150000,
+        "automatic_tax": {
+          "enabled": false,
+          "liability": null,
+          "status": null
+        },
+        "billing_address_collection": null,
+        "cancel_url": "https://ahmed-yehia12.github.io/E-CommerceReactJs/#/cart",
+        "client_reference_id": "65d6c835f6109fda0e8a07ed",
+        "client_secret": null,
+        "consent": null,
+        "consent_collection": null,
+        "created": 1708677731,
+        "currency": "egp",
+        "currency_conversion": null,
+        "custom_fields": [
+        ],
+        "custom_text": {
+          "after_submit": null,
+          "shipping_address": null,
+          "submit": null,
+          "terms_of_service_acceptance": null
+        },
+        "customer": null,
+        "customer_creation": "if_required",
+        "customer_details": {
+          "address": {
+            "city": null,
+            "country": "EG",
+            "line1": null,
+            "line2": null,
+            "postal_code": null,
+            "state": null
+          },
+          "email": "ahmedyehia123@gmail.com",
+          "name": "ahmed yehia",
+          "phone": null,
+          "tax_exempt": "none",
+          "tax_ids": [
+          ]
+        },
+        "customer_email": "ahmedyehia123@gmail.com",
+        "expires_at": 1708764131,
+        "invoice": null,
+        "invoice_creation": {
+          "enabled": false,
+          "invoice_data": {
+            "account_tax_ids": null,
+            "custom_fields": null,
+            "description": null,
+            "footer": null,
+            "issuer": null,
+            "metadata": {
+            },
+            "rendering_options": null
+          }
+        },
+        "livemode": false,
+        "locale": null,
+        "metadata": {
+          "city": "cairo",
+          "phone": "01113271757",
+          "street": "maadi"
+        },
+        "mode": "payment",
+        "payment_intent": "pi_3OmuMeHRFfpX6hm30ailGa0G",
+        "payment_link": null,
+        "payment_method_collection": "if_required",
+        "payment_method_configuration_details": null,
+        "payment_method_options": {
+        },
+        "payment_method_types": [
+          "card"
+        ],
+        "payment_status": "paid",
+        "phone_number_collection": {
+          "enabled": false
+        },
+        "recovered_from": null,
+        "setup_intent": null,
+        "shipping_address_collection": null,
+        "shipping_cost": null,
+        "shipping_details": null,
+        "shipping_options": [
+        ],
+        "status": "complete",
+        "submit_type": null,
+        "subscription": null,
+        "success_url": "https://ahmed-yehia12.github.io/E-CommerceReactJs/",
+        "total_details": {
+          "amount_discount": 0,
+          "amount_shipping": 0,
+          "amount_tax": 0
+        },
+        "ui_mode": "hosted",
+        "url": null
+      }
+    },
+    "livemode": false,
+    "pending_webhooks": 1,
+    "request": {
+      "id": null,
+      "idempotency_key": null
+    },
+    "type": "checkout.session.completed"
+  }

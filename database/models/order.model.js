@@ -29,12 +29,16 @@ isDelivered:{
     type:Boolean,
     default:false
 },
-delvieredAt:Date,
+delvieredAt:{
+    type:Date
+},
 isPaid:{
     type:Boolean,
     default:false
 },
-paidAt:Date
+paidAt:{
+    type:Date
+}
 
 
 

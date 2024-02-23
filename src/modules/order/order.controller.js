@@ -4,6 +4,7 @@ import { cartModel } from '../../../database/models/cart.model.js';
 import { orderModel } from '../../../database/models/order.model.js';
 import { productModel } from './../../../database/models/product.model.js';
 import Stripe from 'stripe';
+import { userModel } from './../../../database/models/user.model';
 const stripe = new Stripe('sk_test_51OmShNHRFfpX6hm3cVr3Keb28EWnW4r5GL2MmPSAcIsnMZvQ7mctEIoufEZH7Y0Q1bOQWrod7PyOYXY2mA6mNnPh001fX8FWG4');
 
 const createCashOrder = async (req,res,next)=>{
@@ -22,12 +23,12 @@ const createCashOrder = async (req,res,next)=>{
         user:req.user._id ,
         orderItems:cart.cartItems,
         totalOrederPrice,
-        shippingAddress:req.body
+        shippingAddress:req.body.shippingAddress
     })
     await order.save()
     // increment sold & decrement quantity
     let options = cart.cartItems.map((pro)=>{
-
+    // bulkwrite ....
         return(
             { updateOne : {
                 "filter" : { _id: pro.product }, 
@@ -115,7 +116,7 @@ const createOnlinePayment =  (request, response) => {
   
     // Handle the event
     if(event.type =='checkout.session.completed'){
-        const checkoutSessionCompleted = event.data.object;
+        card(event.data.object,response)
         console.log("create order here...");
 
 
@@ -133,4 +134,47 @@ export {
     getAllOrder,
     createCheckOutSession,
     createOnlinePayment
+}
+
+async function card(e,res){
+
+    
+    // get cart 
+    const cart = await cartModel.findById(e.client_reference_id);
+    if(!cart) return next(new Error('cart not found',{cause:404}));
+
+    let user = await userModel.findOne({email:e.customer_email});
+
+
+
+   
+
+    // create order
+    let order = new orderModel({
+        user:user._id ,
+        orderItems:cart.cartItems,
+        totalOrederPrice:e.amount_total / 100,
+        shippingAddress:e.metadata,
+        isPaid:true,
+        paymentType:'card',
+        paidAt:Date.now()
+    })
+    await order.save()
+    // increment sold & decrement quantity
+    let options = cart.cartItems.map((pro)=>{
+    // bulkwrite ....
+        return(
+            { updateOne : {
+                "filter" : { _id: pro.product }, 
+                "update" : { $inc : { sold:pro.quantity , quantity:-pro.quantity } }
+             } }
+
+        )
+    })
+    productModel.bulkWrite(options);
+
+    // clear user cart
+
+    await cartModel.findByIdAndDelete({user:user._id} )
+   return res.json({success:true , order})
 }
