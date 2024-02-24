@@ -183,6 +183,6 @@ async function card(e,res){
 
     // clear user cart
 
-    await cartModel.findByIdAndDelete({user:user._id} )
+    await cartModel.findOneAndDelete({user:user._id} )
    return res.json({success:true , order})
 }
